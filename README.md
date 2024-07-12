@@ -169,7 +169,7 @@ for i in range(3):
 |git add "파일명"|변경사항이 있는 파일을 Staging area 추가 <br> "U" => "A" <br>폴더에 작성된 모든 파일을 버전에 넣을 준비가 되었다고 선언하는 모습<br>**EX) git add .** : 해당 디렉토리에 있는 모든 파일 업로드|
 |git rm --cached "파일명"|파일을 stage에서 내리기|
 |git commit|staging area에 있는 파일들을 저장소에 기록<br>(해당 시점의 버전을 생성하고 변경 이력을 남기는 것) <br> Ex. **git commit -m "메세지 내용"**|
-|git log|commit의 히스토리 확인<br> git log --oneline : 한줄로 간단하기 커밋 확인|
+|git log|commit의 히스토리 확인<br> git log --oneline : 한줄로 간단하게 커밋 확인|
 |git status|파일 상태 확인|
 |git config --global -l|깃의 현재 설정 내용 확인|
 
