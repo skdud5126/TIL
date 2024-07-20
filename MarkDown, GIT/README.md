@@ -154,7 +154,7 @@ for i in range(3):
 |실제 작업중인 파일들이 위치 하는 곳|Working Directory에서 변경된 파일 중,<br> 다음 버전에 포함시킬 파일들을 선택적으로<br> 추가하거나 제외할 수 있는 **중간 준비 영역**|버전 이력과 파일들이 영구적으로 저장되는 영역 <br> 모든 버전과 변경 이력 기록|
 
 
-![alt text](./images/image.png)
+![alt text](/images/image.png)
 
 
 <br>
@@ -186,7 +186,7 @@ for i in range(3):
 |Staged|- 감지된 파일의 수정 사항이 Staging area로 이동한 상태|
 |Committed<br>(Unmodified)|- 파일의 수정 사항에 대한 이력 저장이 완료된 상태|
 
-![alt text](./images/image-1.png)
+![alt text](/images/image-1.png)
 
 ---
 
