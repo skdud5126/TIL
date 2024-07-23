@@ -44,3 +44,36 @@ for i in range(len(numbers)):
     numbers[i] = numbers[i]**2
 
 print(numbers)  # [16, 36, 100, 64, 25]
+
+
+# 중첩된 반복문
+
+outers = ['A', 'B']
+inners = ['c', 'd']
+
+for outer in outers:
+    for inner in inners:
+        print(outer,inner)
+
+'''
+A c
+A d
+B c
+B d
+'''
+
+elements = [
+    ['A', 'B'],
+    ['c', 'd']
+]
+
+for elem in elements:
+    for item in elem:
+        print(item)
+
+'''
+A
+B
+c
+d
+'''        
