@@ -34,3 +34,20 @@ res = []
 dfs(graph, start, visited, res)
 
 print(*res)
+
+
+"""
+인접행렬
+    adjM = [[0]*(V+1) for _ in range(V+1)]  # 인접행렬
+    for _ in range(E):
+        v, w = map(int, input().split())    # v출발, w 도착 (유향그래프)
+        adjM[v][w] = 1                      # v에 인접한 w
+        #adjM[w][v] = 1                      # 무향그래프였다면
+        
+인접리스트
+    adjL = [[] for _ in range(V+1)]         # 인접 리스트
+    for _ in range(E):
+        v, w = map(int, input().split())    # v출발, w 도착 (유향그래프)
+
+        adjL[v].append(w)
+"""
