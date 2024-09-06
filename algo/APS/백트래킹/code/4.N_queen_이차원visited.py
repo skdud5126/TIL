@@ -21,6 +21,16 @@ def check(row, col):
         i -= 1
         j += 1
 
+        # # 왼쪽 대각선 확인
+    # for i, j in zip(range(row - 1, -1, -1), range(col - 1, -1, -1)):
+    #     if visited[i][j] == 1:
+    #         return False
+    #
+    # # 오른쪽 대각선 확인
+    # for i, j in zip(range(row - 1, -1, -1), range(col + 1, N)):
+    #     if visited[i][j] == 1:
+    #         return False
+
         
 
 def dfs(row):
