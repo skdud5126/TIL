@@ -4,7 +4,7 @@
 # 1. 프로젝트 시작하자마자 gitignore 생성하기
 $ code .gitignore
 
-# 2. 
+# 2. 가상 환경 생성하기
 $ python -m venv venv
 
 # 3. 가상환경 활성화 하기
@@ -18,6 +18,7 @@ $ pip install django
 # 5. 현재 버전을 다음에도 똑같이 유지하기 위해 기록
 $ pip freeze > requirements.txt
 ```
+
 2. django 프로젝트 생성하기
 
 ```bash
@@ -49,4 +50,4 @@ $ python manage.py startapp my_app
 > 그러고 나서, 추가로 app을 생성했음.
   - 이건.. 프로젝트랑 완전 별개 폴더(패키지)이다.
 
-> 프로젝트가 방금 만들어진 app의 존재를 알
+> 프로젝트가 방금 만들어진 app의 존재를 알 리가 없다.
