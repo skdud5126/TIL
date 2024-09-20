@@ -25,9 +25,16 @@ def search(request):
 def throw(request):
     return render(request, 'articles/throw.html')
 
-# def catch(request):
-#     # 사용자가 요청보낸 데이터를 추출해서 context 딕셔너리에 세팅
-#     context = {
-#         'message' : 
-#     }
-#     return render(request, 'article/throw.html')
+def catch(request):
+    # 사용자가 요청보낸 데이터를 추출해서 context 딕셔너리에 세팅
+    message = request.GET.get('message')
+    context = {
+        'message' : message,
+    }
+    return render(request, 'articles/catch.html', context)
+
+def greeting(request, name):
+    context = {
+        'name' : name,
+    }
+    return render(request, 'articles/greeting.html', context)
