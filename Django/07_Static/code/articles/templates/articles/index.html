@@ -8,10 +8,10 @@
   <title>Document</title>
 </head>
 <body>
-  <img src="{% static "articles/sample-1.png" %}" alt="sample-image">
-  <img src="{% static "sample-2.png" %}" alt="sample-img">
+  {% comment %} <img src="{% static "articles/sample-1.png" %}" alt="sample-image">
+  <img src="{% static "sample-2.png" %}" alt="sample-img"> {% endcomment %}
   <h1>Articles</h1>
-  <a href="{% url "articles:create" %}">NEW</a>
+  <a href="{% url "articles:create" %}">CREATE</a>
   {% comment %} <p>{{ articles }}</p> {% endcomment %}
   {% for article in articles %}
     <p>글 번호: {{ article.pk }}</p>
