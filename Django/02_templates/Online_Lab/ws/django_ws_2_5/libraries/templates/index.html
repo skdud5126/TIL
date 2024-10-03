@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도서 조회 시스템</title>
+
+    <style>
+        .head_box {
+            margin: 10px;
+            padding : 20px 0px;
+            background-color : lightgray;
+        }
+
+        .head_box a{
+            margin : 0px;
+            text-decoration: none;
+            color : black;
+
+            padding: 20px;
+        }
+        .point{
+            background-color : green;
+        }
+        .box{
+            margin: 20px;
+        }
+
+        .title{
+            text-align : center;
+            background-color : orange;
+            font-weight: bold;
+            padding : 10px;
+        }
+
+        .middle_title{
+            text-align : center;
+            background-color : lightblue;
+            font-weight : bold;
+            padding : 10px;
+        }
+
+        p{
+            text-align : center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class = "head_box">
+        <a href="{% url "home" %}" class = "point" style = "color : white;">Home</a>
+        <a href="{% url "recommend" %}">Recommend</a>
+        <a href="{% url "bestseller" %}">BestSeller</a>
+    </div>
+
+    <div class= "box">
+    <h1 class = 'title'>도서 관리 시스템</h1>
+    <p>도서 관리 시스템은 도서를 효율적으로 관리하고, 신간 및 베스트 셀러를 추천하는 서비스입니다.</p>
+    </div>  
+
+    <div class= 'box'>
+        <h1 class = 'middle_title'>서비스 소개</h1>
+        <p>도서 관리 시스템은 도서관이나 도서 판매 업체에서 사용할 수 있는 편리한 도서 관리 솔루션입니다. 이 시스템을 통해 도서 정보를 등록, 수정, 삭제할 수 있으며, 도서의 신간 정보를 확인하거나 베스트 셀러 목록을 확인하여 독자들에게 추천할 수 있습니다. 간단하고 직관적인 사용자 인터페이스로 편리한 도서 관리를 지원합니다.</p>
+    </div>
+
+</body>
+</html>

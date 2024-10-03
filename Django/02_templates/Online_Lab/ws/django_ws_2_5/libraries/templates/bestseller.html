@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .head_box {
+      margin: 10px;
+      padding : 20px 0px;
+      background-color : lightgray;
+  }
+  
+  .head_box a{
+      margin : 0px;
+      text-decoration: none;
+      color : black;
+  
+      padding: 20px;
+  }
+  .point{
+      background-color : green;
+  }
+
+  .main {
+    margin : 10px;
+  }
+  .title{
+    text-align : center;
+  }
+  .book{
+    font-weight : bold;
+    font-size : 20px;
+  }
+  .author{
+    color: gray;
+  }
+  </style>
+</head>
+<body>
+  <div class = "head_box">
+    <a href="{% url "home" %}" class = "point" style = "color : white;">Home</a>
+    <a href="{% url "recommend" %}">Recommend</a>
+    <a href="{% url "bestseller" %}">BestSeller</a>
+  </div>
+  <div class='main'>
+  <h1 class ='title'>베스트 셀러 목록</h1>
+  {% for item in result %}
+
+      {% if  item.rank == 1%}
+        <div style = 'background-color: lightpink;'>
+      {% elif item.rank == 2 %}
+        <div style = 'background-color: purple;'>
+      {% elif item.rank == 3 %}
+        <div style = 'background-color: lightgreen;'>
+      {% else %}
+          <div>
+      {% endif %}
+    <p class = 'book'>{{ item.title }}</p>
+    <p class= 'author'>저자 : {{ item.author }}</p>
+    <p>설명 : {{ item.bestDuration }}</p>
+    <hr>
+  </div>
+
+
+  {% endfor %}
+</div>
+</body>
+</html>
