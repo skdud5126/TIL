@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>이 곳에서 할 일을 생성합니다.</h1>
+
+
+  <form action="{% url "todos:new_todo" %}" method = "POST">
+    {% csrf_token %}
+    <div>work : <input type="text" name="work"></div>
+    <div>content : <textarea name="content" id=""></textarea>
+      <input type="submit" value="제출">
+    </div>
+
+  </form>
+{% endblock content %}
