@@ -4,6 +4,8 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def login(request):
@@ -22,7 +24,7 @@ def login(request):
     }
     return render(request, 'accounts/login.html', context)
 
-
+@login_required
 def logout(request):
     auth_logout(request)
     return redirect('articles:index')
@@ -44,7 +46,7 @@ def signup(request):
     }
     return render(request, 'accounts/signup.html', context)
 
-
+@login_required
 def delete(request):
     # User 모델에서 누가 회원탈퇴를 요청한건지 검색할 필요가 없다.
     # request 객체에 요청을 보내는 user 정보가 함께 들어있기 때문.
@@ -52,7 +54,7 @@ def delete(request):
     request.user.delete()
     return redirect('articles:index')
 
-
+@login_required
 def update(request):
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance = request.user)
@@ -66,6 +68,7 @@ def update(request):
     }
     return render(request, 'accounts/update.html', context)
 
+@login_required
 def change_password(request,user_pk):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
