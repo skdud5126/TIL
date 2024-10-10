@@ -160,7 +160,7 @@ FROM
 WHERE
   FirstName LIKE '___a';
 
-
+-- LENGTH 통상적으로 표준함수가 아님 MySQL에서는 bytes를 반환함 
 -- SELECT
 --   LastName, FirstName
 -- FROM
@@ -220,7 +220,7 @@ ORDER BY
 
 -- 테이블 tracks에서 Composer 필드를 그룹화하여 각 그룹에 대한 Milliseconds의 평균 값이 10 미만인 데이터 조회(단, Milliseconds 필드는 60,000으로 나눠 분 단위 값의 평균으로 계산)
 SELECT
-  Composer, Milliseconds/60000 AS avg0fBytes
+  Composer, AVG(Milliseconds/60000) AS avg0fBytes
 FROM
   tracks
 GROUP BY
