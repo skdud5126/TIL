@@ -18,7 +18,7 @@ def detail(request, pk):
     article = Article.objects.get(pk=pk)
     comment_form = CommentForm()
     # 해당 게시글에 작성된 모든 댓글 조회(역참조)
-    comments=article.comment_set.all()
+    comments=article.comment_set.all() 
     context = {
         'article': article,
         'comment_form' : comment_form,
