@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>hello,{{user.username}}</h1>
+<a href="{% url "accounts:login" %}">[LOGIN]</a>
+  <form action="{% url "accounts:logout" %}">
+    {% csrf_token %}
+    <input type="submit" value="LOGOUT">
+  </form>
+<h1>전체 유저 목록</h1>
+  {% for user in users %}
+    <ul>
+      <li>{{user.username}}</li>
+      <hr>
+    </ul>
+  {% endfor %}
+{% endblock content %}
+
+
