@@ -9,7 +9,8 @@ class Doctor(models.Model):
 
 
 class Patient(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    # ManyToManyField 작성
+    doctors = models.ManyToManyField(Doctor)
     name = models.TextField()
 
     def __str__(self):
