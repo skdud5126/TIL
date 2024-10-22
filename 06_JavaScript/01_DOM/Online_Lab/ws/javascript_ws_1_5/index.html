@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+  <section>
+
+    <!-- 아래에 새로운 card 생성 및 추가 -->
+   </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <script>
+    // section 요소와 article요소를 선택한다.
+    // article의 경우, 변수에 할당 시 추가로 생성할 article요소와 구분 지을 수 있는 변수명으로 작성한다.
+
+    const sectiontag = document.querySelector('section')
+    const articletag = document.querySelector('article')
+
+    const newarticle = document.createElement('article')
+    newarticle.classList.add('card')
+    newarticle.style.width = '18rem'
+
+    
+    // 새 article 요소와 하위 요소에 클래스 등 속성과 값을 추가한다.
+    // div 요소에 h5와 p 요소를 추가한다.
+    // div를 새로 작성한 article에 추가한다.
+
+    const divtag = document.createElement('div')
+    const h5tag = document.createElement('h5')
+    const ptag = document.createElement('p')
+
+    newarticle.appendChild(divtag)
+    divtag.appendChild(h5tag)
+    divtag.appendChild(ptag)
+
+
+    divtag.classList.add('card-body')
+    h5tag.classList.add('card-title')
+    h5tag.textContent = '카드 제목'
+    ptag.classList.add('card-text')
+    ptag.textContent = '카드 내용'
+
+
+    sectiontag.appendChild(newarticle)
+    
+
+  </script>
+</body>
+</html>
