@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const studentNames = ['John', 'Alice', 'Bob']
+    const studentAges = {
+      John: 50,
+      Alice: 100,
+      Bob: 25
+    }
+    // 아래에 코드 작성
+
+    // 주어진 배열 studentNames만을 순회하여 실행결과 이미지와 일치하도록 출력하시오.
+      // 객체 studentAges에서 속성의 값이 50이상인 경우만 출력하시오.
+      // 객체 studentAges를 순회하지 않도록 주의하시오.
+
+    for (const studentName of studentNames) {
+      if (studentAges[studentName] >= 50) {
+        console.log(`${studentName}은 ${studentAges[studentName]}세 입니다.`)
+      }
+    }
+  </script>
+</body>
+
+</html>

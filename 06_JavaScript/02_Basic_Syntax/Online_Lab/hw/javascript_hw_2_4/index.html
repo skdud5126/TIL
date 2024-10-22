@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 변수 num에 할당된 값이 while문 안에서 재 할당 될 수 있도록 변수 선언 방식을 수정하시오.
+    let num = 5
+
+    // while문의 조건이 num이  0이상인  동안이 되도록 비교대상과 비교연산자를 수정하시오.
+    // while문이 동작한느 동안, 카운트다운  :num이 올바르게 출력되도록 수정하시오.
+    while (num >= 0) {
+      console.log(`카운트 다운 : ${num}`)
+      num -= 1
+    }
+    
+    // 배열 students에 담긴 각 요소, '가', '나', '다', '라'가 순서대로 출력되도록 for문을 수정하시오.
+    const students = ['가', '나', '다', '라']
+    for (const student of students) { 
+      console.log(student)
+    }
+
+    //  배열 students에 담긴 각 요소를 인덱스로 접근하여 '라', '다', '나', '가' 순으로 출력되도록 for문의 조건을 수정하시오.
+    for (let i = 3; i >= 0; --i) {
+      console.log(students[i])
+    }
+  </script>
+</body>
+
+</html>
