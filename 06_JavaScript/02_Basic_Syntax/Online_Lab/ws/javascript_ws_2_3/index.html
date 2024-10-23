@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const scores = [90, 80, 70, 60, 40]
+
+    // for .. of 문으로 코드 작성
+      // 주어진 배열 scores의 길이를 계산하여 length변수에 할당하고, 출력하시오.
+      // 주어진 배열 scores가 가진 요소들의 총 합을 계산하여 출력하시오.
+      // scoresr가 가진 요소들의 평균 값을 출력하시오.
+    let length = 0
+    let hap = 0
+    for (const score of scores) {
+       length += 1
+       hap += score
+
+    }
+    console.log(length)
+    console.log(hap)
+    console.log(hap/length)
+
+
+
+    // while문으로 코드 작성
+
+    while (length>0) {
+      length -=1
+      console.log(scores[length])
+      
+    }
+
+  </script>
+</body>
+</html>
