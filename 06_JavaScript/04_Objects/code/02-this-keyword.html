@@ -12,7 +12,9 @@
     // Method & this 예시
     const person = {
       name: 'Alice',
-      greeting: function () { },
+      greeting: function () {
+        return `Hello my name is ${this.name}`
+       },
     }
 
     console.log(person.greeting()) // Hello my name is Alice
@@ -22,7 +24,7 @@
     const myFunc = function () {
       return this
     }
-    console.log(myFunc()) // ??
+    console.log(myFunc()) // window
 
     // 1.2 메서드 호출 시 this
     const myObj = {
@@ -31,7 +33,7 @@
         return this
       }
     }
-    console.log(myObj.myFunc()) // ??
+    console.log(myObj.myFunc()) // myObj
 
     // 2. 중첩된 함수에서의 this
     // 2.1 일반 함수
@@ -39,7 +41,7 @@
       numbers: [1, 2, 3],
       myFunc: function () {
         this.numbers.forEach(function (number) {
-          console.log(this) // ??
+          console.log(this) // window
         })
       }
     }
@@ -50,7 +52,7 @@
       numbers: [1, 2, 3],
       myFunc: function () {
         this.numbers.forEach((number) => {
-          console.log(this) // ??
+          console.log(this) // myObj3
         })
       }
     }
