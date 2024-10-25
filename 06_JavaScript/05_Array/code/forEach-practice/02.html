@@ -15,8 +15,20 @@
     // 결과를 새 배열에 저장
     const numbers = [1, 2, 3, 4, 5]
 
+    // const -> 재선언, 재할당
+    const result = []
 
+    numbers.forEach((number) => {
+      // 1. 짝수면 2배 곱
+      if (number % 2 === 0) {
+        result.push(number*2)
+      // 2. 홀수면 3을 합
+      } else {
+        result.push(number+3)
+      }
 
+    })
+    console.log(result)
 
     // 결과
     // [4, 4, 6, 8, 8]
