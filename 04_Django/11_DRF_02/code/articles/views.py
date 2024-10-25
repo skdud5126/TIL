@@ -2,8 +2,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
-from .models import Article
-from .serializers import ArticleListSerializer, ArticleSerializer
+from .models import Article, Comment
+from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
 
 
 @api_view(['GET', 'POST'])
@@ -39,3 +39,35 @@ def article_detail(request, article_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+
+@api_view(['GET'])
+def comment_list(request):
+
+    if request.method == 'GET':
+        # 댓글 전체 조회 
+        comments = Comment.objects.all()
+        # 댓글 목록 쿼리셋을 직렬화 진행
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+    
+@api_view(['GET'])
+def comment_detail(request, comment_pk):
+    # 단일 댓글 조회
+    comment = Comment.objects.get(pk = comment_pk)
+    # 단일 댓글 직렬화
+    serializer = CommentSerializer(comment)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def comment_create(request, article_pk):
+    # 게시글 조회 (어떤 게시글에 작성되는 댓글인지)
+    article = Article.objects.get(pk=article_pk)
+    # 사용자 입력 데이터를 직렬화(사용자가 입력한 댓글 데이터)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        # 외래 키 데이터 입력 후 저장
+        serializer.save(article = article)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
