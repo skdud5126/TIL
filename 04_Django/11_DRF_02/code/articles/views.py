@@ -51,13 +51,26 @@ def comment_list(request):
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     
-@api_view(['GET'])
+@api_view(['GET', 'DELETE', 'PUT'])
 def comment_detail(request, comment_pk):
     # 단일 댓글 조회
     comment = Comment.objects.get(pk = comment_pk)
+
+    if request.method == 'GET':
     # 단일 댓글 직렬화
-    serializer = CommentSerializer(comment)
-    return Response(serializer.data)
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
 
 
 @api_view(['POST'])
