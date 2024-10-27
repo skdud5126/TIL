@@ -13,6 +13,17 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
+    class CommentDetailSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = Comment
+            fields = ('id', 'content',)
+        
+
+    # comment_set 역참조 데이터를 override
+    comment_set = CommentDetailSerializer(many=True, read_only = True)
+    # 댓글 개수 제공을 위한 새로운 필드 생성(변수이름 마음대로 생성 가능)
+    number_of_comments = serializers.IntegerField(source = 'comment_set.count', read_only=True)
+
     class Meta:
         model = Article
         fields = '__all__'

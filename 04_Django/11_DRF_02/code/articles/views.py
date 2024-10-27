@@ -2,6 +2,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+from django.shortcuts import get_object_or_404, get_list_or_404
+
 from .models import Article, Comment
 from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerializer
 
@@ -9,7 +11,8 @@ from .serializers import ArticleListSerializer, ArticleSerializer, CommentSerial
 @api_view(['GET', 'POST'])
 def article_list(request):
     if request.method == 'GET':
-        articles = Article.objects.all()
+        # articles = Article.objects.all()
+        articles = get_list_or_404(Article)
         serializer = ArticleListSerializer(articles, many=True)
         return Response(serializer.data)
 
@@ -22,7 +25,8 @@ def article_list(request):
 
 @api_view(['GET', 'DELETE', 'PUT'])
 def article_detail(request, article_pk):
-    article = Article.objects.get(pk=article_pk)
+    # article = Article.objects.get(pk=article_pk)
+    article = get_object_or_404(Article, pk=article_pk)
 
     if request.method == 'GET':
         serializer = ArticleSerializer(article)
