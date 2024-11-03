@@ -96,6 +96,7 @@ def profile(request, username):
     }
     return render(request, 'accounts/profile.html', context)
 
+from django.http import JsonResponse
 
 def follow(request, user_pk):
     User = get_user_model()
@@ -103,10 +104,21 @@ def follow(request, user_pk):
     me = request.user
 
     if me != you:
+        # 9. JS에게 팔로우 상태여부를 전달할 데이터 작성
         if me in you.followers.all():
             you.followers.remove(me)
             # me.followings.remove(you)
+            is_followed = False
         else:
             you.followers.add(me)
             # me.followings.add(you)
+            is_followed = True
+        context = {
+            # 14. 팔로워 수와 팔로잉 수에 대한 데이터 작성
+            'is_followed' : is_followed,
+            'followings_count' : you.followings.count(),
+            'followers_count' : you.followers.count(),
+        }
+        # 10. JSON 데이터로 응답
+        return JsonResponse(context)
     return redirect('accounts:profile', you.username)
