@@ -27,7 +27,7 @@
     <a href="{% url "accounts:signup" %}">회원가입</a>
   {% endif %}
 
-  
+  <article class ="article-container">
   {% for article in articles %}
     <a href="{% url "accounts:profile" article.user.username %}">
       <p>작성자: {{ article.user.username }}</p>
@@ -38,7 +38,9 @@
     </a>
     <p>글 내용: {{ article.content }}</p>
     {% comment %} 좋아요 form 버튼 {% endcomment %}
-    <form action="{% url "articles:likes" article.pk %}" method="POST">
+    {% comment %} 6. 좋아요 버튼의 action, method 삭제 {% endcomment %}
+    {% comment %} 9. JS에 게시글 id를 전달하기 위한 data 속성 세팅 {% endcomment %}
+    <form data-article-id ="{{article.pk}}">
       {% csrf_token %}
       {% if request.user in article.like_users.all %}
         <input type="submit" value="좋아요 취소">
@@ -48,6 +50,35 @@
     </form>
     <hr>
   {% endfor %}
+ </article>
+
+  {% comment %} 1. axios CDM 작성 {% endcomment %}
+ <scrip src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+ <script>
+  // 2. 게시글을 모두 포함하는 최상휘 요소를 선택
+  const articleContainer = document.querySelector('.article-container')
+
+  // 7. csrftoken 선택
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+  // 3. 선택한 최상휘 요소에 이벤트 핸들러를 부착
+  articleContainer.addEventListener('submit', function (event) {
+    // 4. submit 이베트 기본 동작 취소
+    event.prevenetDefault()
+
+    // 10. HTML에서 전달한 게시글 id 받기
+    const articleId = event.target.dataset.articleId
+
+    // 5. axios 요청 작성
+    axios({
+      method : 'post',
+      url : `/articles/${}/likes/`,
+      // 8. 선택한 csrftoken을 headers에 선택
+      headers: {'X-CSRFToken': csrftoken},
+    })
+  })
+ </script>
 
 </body>
 </html>
