@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>{{ person.username }}님의 프로필</h1>
+  <div> 
+    <div>
+      팔로잉 : {{ person.followings.all|length }} / 팔로워 : {{ person.followers.all|length }}
+    </div>
+    {% if request.user != person %}
+      <div>
+        {% comment %} 2. follow form 태그 수정 {% endcomment %}
+        <form id = 'follow-form'>
+          {% csrf_token %}
+          {% if request.user in person.followers.all %}
+            <input type="submit" value="Unfollow">
+          {% else %}
+            <input type="submit" value="Follow">
+          {% endif %}
+        </form>
+    </div>
+    {% endif %}
+  </div>  
+  <hr>
+  <h2>{{ person.username }}가 작성한 게시글</h2>
+  {% for article in person.article_set.all %}
+    <div>{{ article.title }}</div>
+  {% endfor %}
+  <hr>
+  <h2>{{ person.username }}가 작성한 댓글</h2> 
+  {% for comment in person.comment_set.all %} 
+    <div>{{ comment.content }}</div> 
+  {% endfor %}
+  
+  <hr>
+  <h2>{{ person.username }}가 좋아요한 게시글</h2> 
+  {% for article in person.like_articles.all %} 
+    <div>{{ article.title }}</div> 
+  {% endfor %}
+
+
+  {% comment %} 1. axios CDN을 작성하여, axios 라이브러리를 사용할 준비를 한다. {% endcomment %}
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // 여기에 코드 작성
+
+    // 3. 팔로우 요청을 위해 필요한 요소를 선택하고 이벤트 핸들러를 할당하시오.
+      // 3-1. querySelector를 사용해 '#follow-form' id속성을 가진 요소를 선택한다.
+      const formTag = document.querySelector('#follow-form')
+
+
+      // 3-2. form 요소에 이벤트 핸들러를 할당하고, 'submit'의 기본동작을 취소한다.
+      formTag.addEventListener('submit', function (event) {
+        event.preventDefault()
+        console.log('팔로우 버튼 클릭!')
+      })
+
+  </script>
+</body>
+</html>
