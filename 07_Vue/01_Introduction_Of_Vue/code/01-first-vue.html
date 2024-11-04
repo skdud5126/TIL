@@ -10,6 +10,9 @@
 <body>
   <div id="app">
     <h1>{{message}}</h1>
+    <button v-on:click="countNumber++">
+      카운트 넘버 : {{ countNumber }}
+    </button>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -19,8 +22,10 @@
     const app = createApp({
       setup() {
         const message = ref('Hello, Vue!')
+        const countNumber = ref(0)
         return {
-          message
+          message,
+          countNumber
         }
       }
     })
