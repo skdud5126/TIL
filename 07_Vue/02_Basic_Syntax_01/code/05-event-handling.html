@@ -18,19 +18,23 @@
     <!-- Method Handlers -->
     <button @click="increase">Hello</button>
 
+    <button @click="myFunc">Hello</button>
+
     <!-- Calling Methods in Inline Handlers -->
-    <button>Say hello</button>
-    <button>Say bye</button>
+    <button @click="greeting('hello')">Say hello</button>
+    <button @click="greeting('bye')">Say bye</button>
 
     <!-- Accessing Event Argument in Inline Handlers -->
-    <button>Submit</button>
+    <button @click="warning('경고입니다', $event)">Submit</button>
 
     <!-- event modifiers -->
-    <form>...</form>
-    <a>...</a>
+    <form @submit.prevent="onSubmit">
+      <input type="submit">
+    </form>
+    <!-- <a @click.stop.prevent="onLink">onLink</a> -->
 
     <!-- key modifiers -->
-    <input>
+    <input @keyup.enter="onSubmit">
 
   </div>
 
@@ -47,8 +51,28 @@
         const greeting = function (message) {
             console.log(message)
         }
+        const warning = function (message,event) {
+          console.log(message)
+          console.log(event)
+        }
+        const name = ref('Alice')
+        const myFunc = function (event) {
+          console.log(event)
+          console.log(event.currentTarget)
+          console.log(name.value)
+        }
+        const onSubmit = function () {
+          console.log('onSubmit')
+        }
+        const onLink = ref('https://www.google.com/')
         return {
-          count
+          count,
+          increase,
+          greeting,
+          warning,
+          myFunc,
+          onSubmit,
+          onLink
         }
       }
     })
