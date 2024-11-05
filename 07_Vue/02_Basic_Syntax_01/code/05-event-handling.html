@@ -12,11 +12,11 @@
 <body>
   <div id="app">
     <!-- Inline Handlers -->
-    <button>Add 1</button>
-    <p>Count: {{ }}</p>
+    <button @click="count++">Add 1</button>
+    <p>Count: {{ count }}</p>
 
     <!-- Method Handlers -->
-    <button>Hello</button>
+    <button @click="increase">Hello</button>
 
     <!-- Calling Methods in Inline Handlers -->
     <button>Say hello</button>
@@ -40,7 +40,16 @@
 
     const app = createApp({
       setup() {
-        return {}
+        const count = ref(0)
+        const increase = function () {
+          count.value +=1
+        }
+        const greeting = function (message) {
+            console.log(message)
+        }
+        return {
+          count
+        }
       }
     })
 
