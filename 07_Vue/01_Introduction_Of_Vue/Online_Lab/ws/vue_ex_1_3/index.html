@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>User Profile</h1>
+    <!-- 1. 반응형 변수 user -->
+      <!-- a. name속성 값은 HTML의 첫 번째 p요소 콘텐츠에 렌더링 된다. -->
+    <p>Name: {{user.name}}</p>
+      <!-- b. age속성 값은 HTML의 두 번째 p 요소 콘텐츠에 렌더링 된다. -->
+    <p>Age: {{user.age}}</p>
+    <button v-on:click="changeName">Change Name</button>
+    <button v-on:click="changeAge">Change Age</button>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const user = ref({
+          name: 'Alice',
+          age: 30
+        })
+        // 2. 함수 changeName
+          // c. 템플릿의 'ChangeName'버튼을 클릭하면 호출된다.
+        const changeName = function () {
+          // d. 호출하면 사용자가 텍스트를 입력할 수 있도록 안내하는 선택적 메시지를 갖고 있는 대화 상자를 띄운다.
+          // e. 대화 상자의 텍스트 입력 필드에는 현재 반응형 변수 user의 name 속성 값이 출력된다.
+          const pro = prompt('Enter new name:', `${user.value.name}`)
+          // f. 새로운 사용자 입력 값을 반응형 변수user의 name 속성 값으로 할당한다.
+          // g. 만약 사용자가 입력을 취소할 경우 반응형 변수 user의 name 속성 값은 이전 값을 유지한다.
+          // h. changeName는 setup()에서 반환된 객체의 메서드이다.
+          if (pro) {
+            user.value.name = pro
+          }
+        }
+        // 3. 함수 changeAge
+          // i. 템플릿의 'ChangeAge'버튼을 클릭하면 호출된다.
+          const changeAge = function () {
+          // j. 호출하면 사용자가 텍스트를 입력할 수 있도록 안내하는 선택적 메시지를 갖고 있는 대화 상자를 띄운다.
+          // k. 대화 상자의 텍스트 입력 필드에는 현재 반응형 변수 user의 age 속성값이 출력된다.
+          const pro = prompt('Enter new age:', `${user.value.age}`)
+
+          // m. 만약 사용자가 입력을 취소할 경우 반응형 변수 user의 age속성값은 이전 값을 유지한다.
+          // n. changeAge는 setup()에서 반환된 객체의 메서드이다
+          if (pro) {
+            // l. 새로운 사용자 입력 값의 데이터 타입을 숫자로 변환하고, 반응형 변수 user의 age속성 값을 할당한다.
+            user.value.age = Number(pro)
+          }
+        }
+        return { 
+          user,
+          changeName,
+          changeAge
+         }
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
