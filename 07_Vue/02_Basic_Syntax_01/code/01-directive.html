@@ -9,13 +9,13 @@
 
 <body>
   <div id="app">
-    <p>Hi there</p>
+    <p v-if="seen">Hi there</p>
 
-    <a href="myUrl">Link</a>
+    <a v-vind:href="myUrl">Link</a>
 
-    <button>button</button>
+    <button v-on:click="doSomething">button</button>
 
-    <form>
+    <form v-on:submit.prevent="onSubmit">
       <input type="submit">
     </form>
   </div>
