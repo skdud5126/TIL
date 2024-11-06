@@ -31,7 +31,7 @@
     <form @submit.prevent="onSubmit">
       <input type="submit">
     </form>
-    <!-- <a @click.stop.prevent="onLink">onLink</a> -->
+    <a @click.stop.prevent="onLink" href="https://www.google.com/">onLink</a>
 
     <!-- key modifiers -->
     <input @keyup.enter="onSubmit">
@@ -64,7 +64,9 @@
         const onSubmit = function () {
           console.log('onSubmit')
         }
-        const onLink = ref('https://www.google.com/')
+        const onLink = function () {
+          console.log('onLink')
+        }
         return {
           count,
           increase,
