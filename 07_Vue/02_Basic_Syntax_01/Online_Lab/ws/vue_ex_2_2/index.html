@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>설문조사</h1>
+
+    <form @submit.prevent="submitForm">
+      <div>
+        <label for="name">이름: </label>
+        <input id="name" type="text" v-model="formData.name">
+      </div>
+
+      <div>
+        <label for="email">이메일: </label>
+        <input id="email" type="email" v-model="formData.email">
+      </div>
+
+      <div>
+        <label for="age">나이: </label>
+        <input id="age" type="number" v-model="formData.age">
+      </div>
+
+      <div>
+        <label for="residence">거주지: </label>
+        <select id="residence" required v-model="formData.residence">
+          <option value="" disabled selected>거주지를 선택하시오.</option>
+          <option>서울</option>
+          <option>경기</option>
+          <option>충청</option>
+          <option>전라</option>
+          <option>경상</option>
+        </select>
+      </div>
+
+      <div>
+        <label>사용하는 언어: </label>
+        <div>
+          <input type="checkbox" id="python" value="Python" v-model="formData.languages">
+          <label for="python">Python</label>
+        </div>
+        <div>
+          <input type="checkbox" id="javascript" value="JavaScript" v-model="formData.languages">
+          <label for="javascript">JavaScript</label>
+        </div>
+        <div>
+          <input type="checkbox" id="csharp" value="C#" v-model="formData.languages">
+          <label for="csharp">C#</label>
+        </div>
+        <div>
+          <input type="checkbox" id="ruby" value="Ruby" v-model="formData.languages">
+          <label for="ruby">Ruby</label>
+        </div>
+      </div>
+      <input type="submit" value="제출" >
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        // 1. 반응형 변수 formData
+          // a. 속성 5개를 가진 객체이다.
+          // b. 각 속성의 이름은 name, email, age, residence, languages이며, 적절한 HTML의 각 input의 값과 양방향 바인딩된다.
+        const formData = ref({
+          name:'',
+          email:'',
+          age: null,
+          residence:'',
+          languages:[]
+        })
+
+        // 2. 함수submitForm
+          // c. HTMLform 요소에서 submit 이벤트가 발생하면 호출된다.
+          // d. 반응형 변수 formDate 객체의 각 속성 값을 실행 결과 이미지에 맞춰 console에 출력한다.
+          // e. submitForm은 setup()에서 반환된 객체의 메서드이다.
+        const submitForm = function () {
+          console.log(formData.value.name)
+          console.log(formData.value.email)
+          console.log(formData.value.age)
+          console.log(formData.value.residence)
+          console.log(formData.value.languages.join(','))
+        }
+
+        return {
+          formData,
+          submitForm
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

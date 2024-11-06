@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .text-crimson {
+      color: crimson;
+    }
+
+    .text-decorate {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1-b. HTML h1요소의 클래스 속성 값에 바인딩하여 폰트 컬러를 변경한다. -->
+    <h1 :class="colorCrimson">Heading</h1>
+    <p :class="{'text-decorate':isDecorate}">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, ipsum.</p>
+    <button @click="toggleDecorate">Toggle Text Style</button>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp,ref } = Vue
+
+    const app = createApp({
+      setup() {
+        // 1. 반응형 변수 colorCrimson
+          // a. 문자열 'text-crimson'값을 가진다.
+        const colorCrimson = ref('text-crimson')
+
+        // 2. 반응형 변수 isDecorate
+          // c. Boolean 타입 'false'값을 가진다.
+        const isDecorate = ref(false)
+
+        // 3. 함수 toggleDecorate
+          // e. 템플릿의 'Toggle Text Style'버튼을 클릭하면 호출된다.
+          // f. 호출하면 반응형 변수 isDecorate값을 토글한다.
+          // g. toggleDecoratesms setup()에서 반환된 객체의 메서드이다.
+        const toggleDecorate = function () {
+          if (isDecorate.value) {
+            isDecorate.value = false
+          } else {
+            isDecorate.value = true
+          }
+        }
+        return {
+          colorCrimson,
+          isDecorate,
+          toggleDecorate
+        }
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
