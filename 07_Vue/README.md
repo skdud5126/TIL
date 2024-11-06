@@ -4,8 +4,8 @@
 | :-----: | :---------------------: |
 | 10/31  | [Introduction of Vue](./01_Introduction_Of_Vue/)   |
 | 11/04  | [Basic Syntax 01](/02_Basic_Syntax_01/)       |
-| 11/05  | [Basic Syntax 02](/02_Basic_Syntax_02/)       |
-| 11/06  | [Single File Component](/03_Single_File_Component/) |
+| 11/05  | [Basic Syntax 02](/03_Basic_Syntax_02/)       |
+| 11/06  | [Single File Component](/04_Single_File_Component/) |
 | 11/07  | Component State Flow  |
 | 11/11  | Router                |
 | 11/12  | State management      |
