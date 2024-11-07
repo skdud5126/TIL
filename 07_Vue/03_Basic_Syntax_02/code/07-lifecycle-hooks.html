@@ -16,13 +16,22 @@
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
-    const { createApp, ref } = Vue
+    const { createApp, ref, onMounted, onUpdated } = Vue
 
     const app = createApp({
       setup() {
         const count = ref(0)
         const message = ref(null)
 
+        onMounted(() => {
+          // 컴포넌트가 마운트될때 ~~~하는 코드들
+          console.log('mounted')
+        })
+
+        onUpdated(() => {
+          // DOM이 수정되면 ~~를 하는 코드들
+          console.log('updated')
+        })
 
         // Lifecycle hook 주의사항
         // Lifecycle Hooks는 동기적으로 작성해야 합니다.
