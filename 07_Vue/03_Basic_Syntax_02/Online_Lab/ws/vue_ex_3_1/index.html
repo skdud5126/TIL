@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .is-completed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Todo Application</h1>
+
+    <ul>
+      <!-- 2. todos 목록 렌더링
+              c. v-for 디렉티브를 사용하여 todos 배열의 각 항목을 순회한다.
+              d. 각 항목의 text 속성을 출력한다.
+              e. 각 항목은 HTML li 요소에 콘텐츠로 렌더링 되어야 한다.
+              f. 사용자가 할 일 항목을 완료할 수 있는지는 체크박스를 제공한다.
+                  ⅳ. 체크박스 클릭함에 따라 isCompleted 속성 값이 토글된다.
+                  ⅴ. 체크박스가 클릭되면 제공된 CSS클래스 선택자 'is-completed'를 적용한다.
+      -->
+        <li v-for="todo in todos" :key="todo.id" :class="{'is-completed':todo.isCompleted}">
+          <input type="checkbox" name="check" id="" :checked="todo.isCompleted" @click="todo.isCompleted=!todo.isCompleted">{{todo.text}}
+        </li>  
+        
+        <!-- 강사님 코드 -->
+        <!-- <li v-for="todo in todos" :key="todo.id">
+          <input type="checkbox" v-model="todo.isCompleted">
+          <span :class="{ 'is-completed': todo.isCompleted }">{{ todo.text }}</span>
+        </li> -->
+  
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        // 1. 반응형 변수 todos
+          // a. 배열 todos에는 세 가지 할 일이 객체 형태로 포함되어 있다.
+          // b. 할 일 객체는 3가지 속성을 가진다.(id, text, isCompleted)
+              // i. id속성은 todo의 각 할 일을 구분하는 식별자 역할을 한다.
+              // ⅱ. text속성은 각 할 일이 무엇인지 문자열 값을 가진다.
+              // ⅲ. isCompleted 속성은 각 할 일의 완료 여부로 Boolean 타입 값을 가진다.
+          let id = 0
+          const todos = ref([
+            {id : id++, text:'생필품 구입', isCompleted:false},
+            {id : id++, text:'빨래', isCompleted:false},
+            {id : id++, text:'방 청소', isCompleted:false},
+          ])
+
+        return {
+          todos,
+ 
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
