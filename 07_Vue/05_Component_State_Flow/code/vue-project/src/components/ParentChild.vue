@@ -4,7 +4,13 @@
     <p>{{ dynamicProps}}</p>
     <ParentGrandChild 
       :my-msg="myMsg"
+      @update-name="updateName"
     />
+
+    <!--<button @click="$emit('someEvent')">클릭</button>-->
+    <button @click="buttonClick">클릭</button>
+
+    <button @click="emitArgs">추가 인자 전달</button>
   </div>
 </template>
 
@@ -24,6 +30,21 @@ defineProps({
 // const props = defineProps({myMsg : String})
 // console.log(props)
 // console.log(props.myMsg)
+
+// emit 이벤트 선언(배열방식, 객체방식)
+const emit = defineEmits(['someEvent', 'emitArgs', 'updateName'])
+
+const buttonClick = function () {
+  emit('someEvent')
+}
+
+const emitArgs = function () {
+  emit('emitArgs', 1, 2, 3)
+}
+
+const updateName = function () {
+  emit('updateName')
+}
 
 import ParentGrandChild from '@/components/ParentGrandChild.vue';
 </script>
