@@ -1,6 +1,8 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
+// 1. 중앙 저장소 가져오기
+import { useCounterStore } from '@/stores/counter';
 </script>
 
 <template>
