@@ -1,0 +1,18 @@
+nav{
+  background-color: gray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+nav a{
+  color : black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+nav a.router-link-exact-active{
+  color : green;
+}
+
