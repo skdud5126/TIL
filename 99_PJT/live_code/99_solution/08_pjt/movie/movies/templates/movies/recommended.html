@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Recommended</h1>
+  <h3>{{ main_weather }}한 날씨엔 이런 영화 어때요?</h3>
+  <hr>
+  {% for movie in movies %}
+    <em>{{ movie.title }}</em>
+    <hr>
+  {% endfor %}
+{% endblock %}

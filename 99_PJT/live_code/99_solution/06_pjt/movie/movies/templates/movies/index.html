@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="mb-4">INDEX PAGE</h1>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+  {% for movie in movies %}
+    <div class="col">
+      <div class="card">
+        <div class="card-header">{{ movie.title }}</div>
+        <div class="card-body">
+          <a href="{% url 'movies:detail' movie.pk %}">DETAIL</a>
+          <form action="{% url 'movies:likes' movie.pk %}" method='POST' class="d-inline">
+            {% csrf_token %}
+            {% if request.user in movie.like_users.all %}
+              <button>좋아요 취소</button>
+            {% else %}
+              <button>좋아요</button>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock content %}

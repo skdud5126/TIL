@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>문제5. 가족 여행을 가기 가장 좋은 날 추천</h1>
+<form method="GET" action="{% url 'weathers:problem5' %}">
+    <label for="start_date">시작 날짜:</label>
+    <select name="start_date" id="start_date" required>
+        <option value="">-- 시작 날짜 선택 --</option>
+        {% for date in dates %}
+        <option value="{{ date }}">{{ date }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="end_date">끝 날짜:</label>
+    <select name="end_date" id="end_date" required>
+        <option value="">-- 끝 날짜 선택 --</option>
+        {% for date in dates %}
+        <option value="{{ date }}">{{ date }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">날짜 선택</button>
+</form>
+
+{% if result %}
+    <h2>추천 결과</h2>
+    <p>행복한 가족 여행을 가기 딱 좋은 날은 <b>{{ result }}</b> 입니다!!</p>
+{% endif %}
+
+{% endblock content %}
+
+

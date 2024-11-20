@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors Game</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+      }
+
+      .game-title {
+        color: #00ff88;
+        font-size: 2.5em;
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        margin-bottom: 20px;
+      }
+
+      .game-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 20px;
+      }
+
+      .player-section,
+      .computer-section {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .choice-display {
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+        border: 5px solid #00ff88;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      /* 기존 CSS는 유지하고 아래 내용을 추가 또는 수정 */
+      .computer-choice-display {
+        border-color: #ff3377;
+        box-shadow: 0 0 20px rgba(255, 51, 119, 0.3);
+        font-size: 130px; /* 이모지 크기 증가 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        user-select: none; /* 이모지 선택 방지 */
+      }
+
+      /* 이모지를 감싸는 새로운 컨테이너 스타일 */
+      .emoji-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #webcam-container {
+        width: 100%;
+        height: 100%;
+      }
+
+      #webcam-container canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .section-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #00ff88;
+      }
+
+      .computer-section .section-title {
+        color: #ff3377;
+      }
+
+      .score-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 20px 0;
+        font-size: 24px;
+      }
+
+      .score {
+        padding: 10px 20px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      #result {
+        font-size: 36px;
+        margin: 20px 0;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .win {
+        color: #00ff88;
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+      }
+      .lose {
+        color: #ff3377;
+        text-shadow: 0 0 10px rgba(255, 51, 119, 0.5);
+      }
+      .tie {
+        color: #ffcc00;
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      }
+
+      .control-buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      button {
+        padding: 15px 30px;
+        font-size: 20px;
+        background: linear-gradient(45deg, #00ff88, #00cc6a);
+        color: #1a1a2e;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 7px 20px rgba(0, 255, 136, 0.4);
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      #label-container {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #888;
+      }
+
+      #current-move {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #00ff88;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="game-title">🎮 Rock Paper Scissors Challenge 🎮</h1>
+
+    <div class="score-container">
+      <div class="score">Player: <span id="player-score">0</span></div>
+      <div class="score">Computer: <span id="computer-score">0</span></div>
+    </div>
+
+    <div class="game-container">
+      <div class="player-section">
+        <h2 class="section-title">Your Move</h2>
+        <div class="choice-display">
+          <div id="webcam-container"></div>
+        </div>
+        <div id="current-move"></div>
+        <div id="label-container"></div>
+      </div>
+
+      <div class="computer-section">
+        <h2 class="section-title">Computer's Move</h2>
+        <div id="computer-choice" class="choice-display computer-choice-display">
+          <div class="emoji-container">?</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="result">Press Start to begin!</div>
+
+    <div class="control-buttons">
+      <button type="button" onclick="init()" id="startButton">Start Game</button>
+      <button type="button" onclick="playGame()" id="playButton" disabled>Play!</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+      const URL = 'https://teachablemachine.withgoogle.com/models/Ai7t6xr_S/';
+
+      let model, webcam, labelContainer, maxPredictions;
+      let currentMove = '';
+      let playerScore = 0;
+      let computerScore = 0;
+      let gameStarted = false;
+
+      // 클래스와 실제 동작 매핑
+      const classMapping = {
+        'Class 1': 'rock',
+        'Class 2': 'scissors',
+        'Class 3': 'paper',
+      };
+
+      const emojis = {
+        rock: '✊',
+        paper: '✋',
+        scissors: '✌️',
+      };
+      async function init() {
+        // 기존 웹캠 정리
+        if (webcam) {
+          webcam.stop();
+        }
+
+        // 게임 상태 초기화
+        currentMove = '';
+        playerScore = 0; // 점수 초기화
+        computerScore = 0; // 점수 초기화
+        document.getElementById('current-move').innerHTML = '';
+        document.getElementById('computer-choice').innerHTML = '<div class="emoji-container">?</div>';
+        document.getElementById('player-score').textContent = '0'; // 점수 표시 초기화
+        document.getElementById('computer-score').textContent = '0'; // 점수 표시 초기화
+
+        const startButton = document.getElementById('startButton');
+        const playButton = document.getElementById('playButton');
+        startButton.disabled = true;
+        document.getElementById('result').textContent = 'Loading...';
+
+        const modelURL = URL + 'model.json';
+        const metadataURL = URL + 'metadata.json';
+
+        try {
+          model = await tmImage.load(modelURL, metadataURL);
+          maxPredictions = model.getTotalClasses();
+
+          const flip = true;
+          webcam = new tmImage.Webcam(220, 220, flip);
+          await webcam.setup();
+          await webcam.play();
+          window.requestAnimationFrame(loop);
+
+          // 웹캠 컨테이너 초기화 및 새 캔버스 추가
+          const webcamContainer = document.getElementById('webcam-container');
+          while (webcamContainer.firstChild) {
+            webcamContainer.removeChild(webcamContainer.firstChild);
+          }
+          webcamContainer.appendChild(webcam.canvas);
+
+          // 라벨 컨테이너 초기화
+          labelContainer = document.getElementById('label-container');
+          labelContainer.innerHTML = '';
+          for (let i = 0; i < maxPredictions; i++) {
+            labelContainer.appendChild(document.createElement('div'));
+          }
+
+          gameStarted = true;
+          startButton.textContent = 'Restart Game';
+          startButton.disabled = false;
+          playButton.disabled = false;
+          document.getElementById('result').textContent = 'Make your move and click Play!';
+        } catch (error) {
+          console.error('Error initializing game:', error);
+          document.getElementById('result').textContent = 'Error starting game. Please try again.';
+          startButton.disabled = false;
+        }
+      }
+
+      function playGame() {
+        if (!gameStarted) return;
+
+        const playButton = document.getElementById('playButton');
+        playButton.disabled = true;
+
+        if (!currentMove) {
+          document.getElementById('result').textContent = 'No gesture detected. Please show your hand clearly.';
+          document.getElementById('result').className = '';
+          playButton.disabled = false;
+          return;
+        }
+
+        const computerChoice = Object.values(classMapping)[Math.floor(Math.random() * 3)];
+        document.getElementById(
+          'computer-choice'
+        ).innerHTML = `<div class="emoji-container">${emojis[computerChoice]}</div>`;
+
+        let result = '';
+        if (currentMove === computerChoice) {
+          result = 'Tie!';
+          document.getElementById('result').className = 'tie';
+        } else if (
+          (currentMove === 'rock' && computerChoice === 'scissors') ||
+          (currentMove === 'paper' && computerChoice === 'rock') ||
+          (currentMove === 'scissors' && computerChoice === 'paper')
+        ) {
+          result = 'You Win!';
+          playerScore++;
+          document.getElementById('result').className = 'win';
+        } else {
+          result = 'Computer Wins!';
+          computerScore++;
+          document.getElementById('result').className = 'lose';
+        }
+
+        document.getElementById('player-score').textContent = playerScore;
+        document.getElementById('computer-score').textContent = computerScore;
+        document.getElementById(
+          'result'
+        ).innerHTML = `${result}<br>Your move: ${emojis[currentMove]} vs Computer: ${emojis[computerChoice]}`;
+
+        // 타이머 시간을 2초(2000ms)로 늘림
+        setTimeout(() => {
+          document.getElementById('computer-choice').innerHTML = '<div class="emoji-container">?</div>';
+          playButton.disabled = false;
+        }, 2000); // 2초로 변경
+      }
+
+      async function loop() {
+        if (gameStarted) {
+          webcam.update();
+          await predict();
+        }
+        window.requestAnimationFrame(loop);
+      }
+
+      async function predict() {
+        const prediction = await model.predict(webcam.canvas);
+        let highestProbability = 0;
+        let predictedClass = '';
+
+        for (let i = 0; i < maxPredictions; i++) {
+          const probability = prediction[i].probability.toFixed(2);
+          const className = prediction[i].className;
+          const mappedMove = classMapping[className];
+          if (probability > highestProbability) {
+            highestProbability = probability;
+            predictedClass = className;
+          }
+          labelContainer.childNodes[i].innerHTML = `${mappedMove}: ${(probability * 100).toFixed(0)}%`;
+        }
+
+        if (highestProbability > 0.8) {
+          currentMove = classMapping[predictedClass];
+          document.getElementById('current-move').innerHTML = `Current move: ${emojis[currentMove]} ${
+            currentMove.charAt(0).toUpperCase() + currentMove.slice(1)
+          }`;
+        } else {
+          document.getElementById('current-move').innerHTML = 'Waiting for clear gesture...';
+        }
+      }
+
+    </script>
+  </body>
+</html>
