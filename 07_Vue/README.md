@@ -1,5 +1,6 @@
 # SSAFY 12기 Vue 라이브 자료
 
+
 | 진행일 | 주제                  |
 | :-----: | :---------------------: |
 | 10/31  | [Introduction of Vue](./01_Introduction_Of_Vue/)   |
@@ -11,5 +12,6 @@
 | 11/12  | [State management](/07_State_Management/)      |
 | 11/13  | [Vue with DRF 01](./08_Vue_with_DRF_01/)       |
 | 11/14  | [Vue with DRF 02](./09_Vue_with_DRF_02/)      |
+
 
 
