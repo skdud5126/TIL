@@ -1,7 +1,6 @@
 # SSAFY 12기 Vue 라이브 자료
 
 
-
 | 진행일 | 주제                  |
 | :-----: | :---------------------: |
 | 10/31  | [Introduction of Vue](./01_Introduction_Of_Vue/)   |
