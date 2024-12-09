@@ -187,3 +187,44 @@ ps) 추가 논문 - Attention is all you need
 
     ![alt text](images/image_09.png)
 
+---
+
+### `Industrial Applications of LLM`
+
+#### 낚시성 기사 탐지
+
+- 제목, 부제목, 본문, 이미지 캡션을 활용하여 제목과 본문의 불일치 문서 탐지
+
+- Attention 기반의 모델(Attention-based Hierarchical Model)
+
+- 비교 모델 중 가장 좋은 성능을 나타냄
+
+- 부제목이 있는 상태로 낚시성 기사 탐지 성능이 훨씬 좋음
+
+  ![alt text](images/image_10.png)
+
+#### 뉴스 부제목 생성 모델
+
+- 뉴스의 중요한 요소인 "제목"을 잘 반영한 부제목 생성 알고리즘
+
+- 실제 제목 : "'코로나 19 극복 함께해요'... 대구.경북에 성금.물품 답지"
+
+- 실제 부제목 : "착한 임대인 운동 공공기관에 확산..군부대는 방역 지원"
+
+    ![alt text](images/image_11.png)
+
+#### 금융 문서 감성 분석
+
+- 미국의 8-k 공시문서 기반의 감성 분석 기반의 주식 가격 움직임 예측
+
+  ![alt text](images/image_12.png)
+
+- 기업별 문서 감정과 주가 흐름 경향
+
+  ![alt text](images/image_13.png)
+
+#### AutoESG : Automated ESG Scoring Framework(ongoing)
+
+- Overall framework using Large Language Model(LLM)
+
+  ![alt text](images/image_14.png)
