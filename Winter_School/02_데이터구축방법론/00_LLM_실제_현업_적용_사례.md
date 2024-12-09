@@ -152,4 +152,38 @@ ps) 추가 논문 - Attention is all you need
 
 - 예제 데이터 수집 : 대화 형식에 focusing하여 데이터셋 구성
 
+---
+
+#### GPT-4(2023.03)
+
+- 텍스트 뿐만 아니라 이미지도 인식할 수 있는 **멀티모달** 버전
+
+- GPT-3.5 버전에 비해 크게 확장된 규모와 개선된 성능을 통해 다양한 테스트에서 훨씬 더 우수한 테스트 점수 획득
+
+  - 더 정교한 언어 이해 및 생성 능력, 더 나은 문맥 파악. 훨씬 더 다양한 작업 수행 능력.
+
+  - 복잡한 질문에 대한 답변, 논리적 추론, 창의적인 작문 등의 작업에서 상당히 향상된 결과를 보여줌.
+
+  - 사용자와의 상호작용에서 보다 정확하고 자연스러운 대화를 제공
+
+- 비전 정보를 포함함으로써 많은 Tasks에서 보다 향상된 성능을 나타내는 것을 확인
+
+
+---
+
+#### Retrieval-Augmented Generation (RAG)
+
+- Query Encode : Dense Passage Retriever (DPR) Query Encoder 이용
+
+- Passage Encoder : DPR Passage Encoder 이용
+
+- Generator : BART Large
+
+  - Query가 입력되면 Query Encoder를 통과하여 representation(q(x)) 생성
+
+  - q(x)와 가장 가까운(Inner Product 기준) {5, 10}개의 Passage탐색
+
+  - Passage를 기존 Query와 concat하여 Generator Input으로 사용하고 각 Passage 별 생성결과를 Marginalize하여 최종 결과물 도출
+
+    ![alt text](images/image_09.png)
 
