@@ -42,4 +42,24 @@ ps) 추가 논문 - Attention is all you need
 
   - 사전 학습된 BERT는 이후 단순한 출력 레이어를 추가하는 것만으로도 다양한 자연어처리 과업에서 SOTA 성능을 달성
 
+### **B**idirectional and **A**uto-**R**egressive **T**ransformer(BART) (2019.10)
 
+- Original Transformer는 기계 번역을 위해 제안됨
+
+  - Source-target의 paired dataset을 통한 superviesed learning 방식
+
+- BART 아이디어 : Transformer 구조를 사용해서 self-supervised learning을 학습하는 방법
+
+  - 입력 token을 단순 masking하는 것이 아니라 corruption 시켜서 사용하는 방법
+
+  ![alt text](images/image_04.png)
+
+#### Exploring the Limits of **T**ransfer Learning with a Unified **T**ext-**t**o-**T**ext **T**ransformer(T5) (2019.10)
+
+- 모든 언어 문제를 text-to-text format으로 변환하는 통합된 프레임워크 unified framework
+
+- 기본적인 구조는 Original Transformer의 구조를 그대로 따름
+
+  - 차이점 : Layer Normalization, Position Embedding
+
+  ![alt text](images/image_05.png)
