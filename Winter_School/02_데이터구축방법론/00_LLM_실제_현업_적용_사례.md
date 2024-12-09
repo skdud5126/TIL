@@ -117,3 +117,39 @@ ps) 추가 논문 - Attention is all you need
 
   - 실제로 사람은 언어를 배울 때 모든 Supervised Task 데이터셋을 필요로 하지 않음
 
+- **메타 러닝(Meta-learning)** : 미세조정용 데에터셋을 사용하지 않아도 되는 대안
+
+  - In-context learning : 학습 과정에서 다양한 형태의 문제를 풀어낼 수 있는 역량을 기르도록 설계
+
+  - 모델이 task에 대한 정보를 참고해서 inference할 수 있도록 input에 예제(demonstarations) 추가
+
+
+- 문제점
+
+  - 사실을 지어내거나, 편향적이거나, 유해한 텍스트를 생성하거나, 사용자 지시를 따르지 않는 경우 발생
+
+  - Language Modeling Objective ≠ 사용자의 지시를 안전하고 유용하게 따르기 (misaligned)
+
+  - Alignment : 인간의 의도에 맞게 동작하도록 LM을 조정하는 것(Helpful, Honest, Harmless)
+
+---
+
+#### InstructGPT(2022.03) : Reinforcement Learning with Human Feedback, RLHF
+
+- 인간의 피드백을 통한 강화학습으로 광범위한 지시사항을 따를 수 있도록 GPT-3를 fine-tuning
+
+- 인간의 평가(선호도)를 Reward로 사용
+
+- 사용자가 제공하는 prompts에 대해 적합한 모델의 결과를 human labeler가 제공하고, 모델의 다양한 결과물에 대해 ranking을 매긴 후 이를 GPT-3 fine-tuning에 사용
+
+- 이러한 방식으로 학습된 InstructGPT는 GPT-3에 비해 사용자의 instruction을 훨씬 잘 수행함
+
+- 심지어 human labeler들은 1.3B InstructGPT를 175B GPT-3보다 선호함(결과가 더 사람이 보기에 낫다는 의미)
+
+- Safety가 강조된 버전
+
+  ![alt text](images/image_08.png)
+
+- 예제 데이터 수집 : 대화 형식에 focusing하여 데이터셋 구성
+
+
