@@ -102,3 +102,18 @@ ps) 추가 논문 - Attention is all you need
   - GPT-2의 토큰 개수 : 1024개(GPT-1은 512개)
 
     ![alt text](images/image_07.png)
+
+---
+
+#### GPT-3 (2020.05) : Language Models are Few-Shot Learners
+
+- 사전 학습된 언어 모델
+
+  - 장점 : 과업 의존적 구조를 사용하지 않고도 미세 조정이 가능
+
+  - 단점 : 구조는 과업에 의존적이지 않으나 task-agnostic, **미세조정을 위해서는 여전히 해당 과업의 데이터셋이 필요**
+  
+  - 이러한 문제점을 해결할 수 있다면 (1) 과업에 따른 충분한 Labeled 데이터를 확보하지 않아도 되며, (2) 모델의 표현력 증대와 제한적인 학습 데이터로 이냏 발생하는 spurious correlation의 위험을 감소시킬 수 있음
+
+  - 실제로 사람은 언어를 배울 때 모든 Supervised Task 데이터셋을 필요로 하지 않음
+
