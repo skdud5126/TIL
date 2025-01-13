@@ -1,5 +1,14 @@
-# Kotlin 기본기 - 변수, 자료형, 함수
+# Kotlin 기본기 - 변수, 자료형, 함수, 스트링 템플릿
 
+- 변수
+
+- 자료형
+
+- 함수
+
+- 스트링 템플릿
+
+---
 ### 변수
 
 - 데이터를 자료형에 따라서 선언을 해야 한다.
@@ -135,7 +144,14 @@ println(mArray.size)  // 3
 
 - "하나의 **특별한 목적의 작업**을 수행하기 위해 설계된 **코드의 집합**"
 
+#### 기본 형식
+
+  ![alt text](images/image_02.png)
+
+
 `ver1. return하는 값이 없는 경우`
+
+- **Unit** : 반환값이 없다는 뜻 (생략 가능)
 
 ```Kotlin
 fun printStudentInfo(name : String, age : Int) : Unit {
@@ -159,3 +175,8 @@ fun addNum(n1 : Int, n2 : Int) : Int {
 ![alt text](images/image_01.png)
 
 ---
+
+### 스트링 템플릿
+
+
+  ![alt text](images/image_03.png)
