@@ -131,3 +131,31 @@ println(mArray.size)  // 3
 
 ---
 
+### 함수(function)
+
+- "하나의 **특별한 목적의 작업**을 수행하기 위해 설계된 **코드의 집합**"
+
+`ver1. return하는 값이 없는 경우`
+
+```Kotlin
+fun printStudentInfo(name : String, age : Int) : Unit {
+  println("Student Name : " + name)
+  println("Student Age : " + age)
+}
+
+// Unit 생략 가능
+```
+
+![alt text](images/image_00.png)
+
+`ver2. return하는 값이 있는 경우`
+
+```Kotlin
+fun addNum(n1 : Int, n2 : Int) : Int {
+        return n1 + n2
+}
+```
+
+![alt text](images/image_01.png)
+
+---
